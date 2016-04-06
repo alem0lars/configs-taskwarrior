@@ -1,0 +1,7 @@
+taskwarrior:
+  taskd:
+    server:      'freecinc.com:53589'
+    key_file:    'freecinc_542a44f4.key.pem'
+    cert_file:   'freecinc_542a44f4.cert.pem'
+    ca_file:     'freecinc_542a44f4.ca.pem'
+    credentials: '<{lpass 4244109256}>'
