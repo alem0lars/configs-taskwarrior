@@ -33,7 +33,7 @@
 <% define_locals do
   prefixed(:"taskwarrior.") do
     variable :theme,    type: :file?,     strict: true
-    variable :data_dir, type: :directory, strict: true
+    variable :data_dir, type: :directory
   end
 
   prefixed(:"taskwarrior.taskd.", as: :taskd_, optional: true) do
