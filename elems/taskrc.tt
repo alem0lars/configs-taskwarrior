@@ -39,9 +39,9 @@
   prefixed(:"taskwarrior.taskd.", as: :taskd_, optional: true) do
     variable :server,      type: :string
     variable :credentials, type: :string
-    variable :key_file,    type: :file
-    variable :cert_file,   type: :file
-    variable :ca_file,     type: :file
+    variable :key_file,    type: :file, strict: true
+    variable :cert_file,   type: :file, strict: true
+    variable :ca_file,     type: :file, strict: true
   end
 end -%>
 # ─────────────────────────────────────────────────────────────────────────────┘
