@@ -32,16 +32,28 @@
 # ─────────────────────────────────────────────────────────────────────────────┤
 <% define_locals do
   prefixed(:"taskwarrior.") do
-    variable :theme,    type: :file?,     strict: true
+    variable :theme,    type: :file?, strict: true
     variable :data_dir, type: :directory
   end
 
   prefixed(:"taskwarrior.taskd.", as: :taskd_, optional: true) do
     variable :server,      type: :string
     variable :credentials, type: :string
-    variable :key_file,    type: :file, strict: true
-    variable :cert_file,   type: :file, strict: true
-    variable :ca_file,     type: :file, strict: true
+    variable :key_file,    type: :string
+    variable :cert_file,   type: :string
+    variable :ca_file,     type: :string
+  end
+
+  if prefix? :taskd
+    computed(:taskd_key_file, type: :file, strict: true) do
+      local!(:data_dir).join(local!(:taskd_key_file))
+    end
+    computed(:taskd_cert_file, type: :file, strict: true) do
+      local!(:data_dir).join(local!(:taskd_cert_file))
+    end
+    computed(:taskd_ca_file, type: :file, strict: true) do
+      local!(:data_dir).join(local!(:taskd_ca_file))
+    end
   end
 end -%>
 # ─────────────────────────────────────────────────────────────────────────────┘
