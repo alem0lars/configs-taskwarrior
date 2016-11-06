@@ -45,13 +45,13 @@
   end
 
   if prefix? :taskd
-    computed(:taskd_key_file, type: :file, strict: true) do
+    computed(:taskd_key_file, strict: true) do
       local!(:data_dir).join(local!(:taskd_key_file))
     end
-    computed(:taskd_cert_file, type: :file, strict: true) do
+    computed(:taskd_cert_file, strict: true) do
       local!(:data_dir).join(local!(:taskd_cert_file))
     end
-    computed(:taskd_ca_file, type: :file, strict: true) do
+    computed(:taskd_ca_file, strict: true) do
       local!(:data_dir).join(local!(:taskd_ca_file))
     end
   end
@@ -59,9 +59,7 @@ end -%>
 # ─────────────────────────────────────────────────────────────────────────────┘
 
 
-# ─────────────────────────────────────────────────────────────────────────────┐
-# Appearance ──────────────────────────────────────────────────────────────────┤
-
+# ─────────────────────────────────────────────────────────────── Appearance ──┐
 # Set the color theme (if available).
 <% if local? :theme %>
 include <%= local! :theme %>
@@ -69,27 +67,16 @@ include <%= local! :theme %>
 
 # Enable colors.
 color = on
-
-# ─────────────────────────────────────────────────────────────────────────────┤
-# Find ────────────────────────────────────────────────────────────────────────┤
-
+# ───────────────────────────────────────────────────────────────────── Find ──┤
 # Enable regex.
 regex = on
-
-# ─────────────────────────────────────────────────────────────────────────────┤
-# Editor ──────────────────────────────────────────────────────────────────────┤
-
+# ─────────────────────────────────────────────────────────────────── Editor ──┤
 editor = <%= get_env! :EDITOR %>
 
 edit.verbose = on
-
-# ─────────────────────────────────────────────────────────────────────────────┤
-# Data ────────────────────────────────────────────────────────────────────────┤
-
+# ───────────────────────────────────────────────────────────────────── Data ──┤
 data.location = <%= local! :data_dir %>
-
-# ─────────────────────────────────────────────────────────────────────────────┤
-# Sync ────────────────────────────────────────────────────────────────────────┤
+# ───────────────────────────────────────────────────────────────────── Sync ──┤
 
 <% if prefix? :taskd %>
 taskd.server=<%= local! :taskd_server %>
@@ -98,5 +85,7 @@ taskd.certificate=<%= local!(:taskd_cert_file).shell_escape %>
 taskd.ca=<%= local!(:taskd_ca_file).shell_escape %>
 taskd.credentials=<%= local! :taskd_credentials %>
 <% end %>
+# ─────────────────────────────────────────────────────────────────────────────┘
+
 
 # vim: set filetype=eruby.conf :

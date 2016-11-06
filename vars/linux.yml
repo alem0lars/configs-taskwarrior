@@ -1,3 +1,0 @@
-taskwarrior:
-  theme: /usr/share/task/dark-256.theme
-  data_dir: ~/.task

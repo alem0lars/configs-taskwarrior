@@ -1,1 +1,4 @@
-# => inherits: generic, linux, alem0lars <= #
+# => inherits: generic, with-os-linux, with-user-alem0lars <= #
+
+
+# vim: set filetype=eruby.yaml :
